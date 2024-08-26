@@ -13,7 +13,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ICuttingDataRequestService, CuttingDataRequestService>();
             services.AddScoped<IStockDataRequestService, StockDataRequestService>();
             services.AddScoped<ISecantOptimiserService, SecantOptimiserService>();
-            
+            services.AddScoped<IJobDataRequestService, JobDataRequestService>();
       
             return services;
         }

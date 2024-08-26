@@ -6,11 +6,13 @@ public class SecFileService : ISecFileService
     readonly ISecantSection _secantSectionService;
     readonly ICuttingDataRequestService _cuttingDataRequestService;
     readonly IStockDataRequestService _stockDataRequestService;
-    public SecFileService(ICuttingDataRequestService cuttingDataRequestService, IStockDataRequestService stockDataRequestService, ISecantSection secantSectionService)
+    readonly IJobDataRequestService _jobDataRequestService;
+    public SecFileService(ICuttingDataRequestService cuttingDataRequestService, IStockDataRequestService stockDataRequestService, ISecantSection secantSectionService, IJobDataRequestService jobDataRequestService)
     {
         _secantSectionService = secantSectionService;
         _cuttingDataRequestService = cuttingDataRequestService;
         _stockDataRequestService = stockDataRequestService;
+        _jobDataRequestService = jobDataRequestService; 
     }
     public void ReadFromFile(string path)
     {
@@ -40,6 +42,7 @@ public class SecFileService : ISecFileService
 
     public void ToSecFile(RequestModel inputModel,string path)
     {
+        AddLinesToSection(UtilityService.SEC_NAME_JOB, _jobDataRequestService.GetLines(inputModel));
         AddLinesToSection(UtilityService.SEC_NAME_CUT, _cuttingDataRequestService.GetLines(inputModel));
         AddLinesToSection(UtilityService.SEC_NAME_STK, _stockDataRequestService.GetLines(inputModel));
         WriteToFile(path);

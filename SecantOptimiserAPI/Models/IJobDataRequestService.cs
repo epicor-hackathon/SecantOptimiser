@@ -1,6 +1,6 @@
 ﻿namespace SecantOptimiserAPI.Models
 {
-    public interface ICuttingDataRequestService
+    public interface IJobDataRequestService
     {
         string[] GetLines(RequestModel requestModel);
     }

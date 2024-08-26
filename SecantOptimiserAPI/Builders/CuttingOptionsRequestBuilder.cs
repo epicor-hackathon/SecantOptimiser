@@ -9,9 +9,6 @@ namespace SecantOptimiserAPI.Builders
             throw new System.NotImplementedException();
         }
 
-        public string GetSectionName()
-        {
-            throw new System.NotImplementedException();
-        }
+      
     }
 }

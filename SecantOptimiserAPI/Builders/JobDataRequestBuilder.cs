@@ -2,9 +2,9 @@
 
 namespace SecantOptimiserAPI.Builders
 {
-    public class JobDataRequestBuilder : ICuttingDataRequestService
+    class JobDataRequestBuilder
     {
-        public string[] GetLines(RequestModel requestModel)
+        public static string[] GetLines(RequestModel requestModel)
         {
             List<string> lines =
                [
@@ -17,11 +17,6 @@ namespace SecantOptimiserAPI.Builders
                 ,"name=Template"
                ];
             return lines.ToArray();
-        }
-
-        public string GetSectionName()
-        {
-            return "JOB";
         }
     }
 }
