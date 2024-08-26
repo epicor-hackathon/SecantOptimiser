@@ -1,0 +1,6 @@
+[CUT]
+2,0,0,0,UG,A,TestQuote1,PartDEFA,UNIVERSAL BEAM 127 X 76 X 13           .,0,0,0,,0,0,,,,,,0,0,,0,0,0,0,0,,0,,,,,,,,,,,,,,,,,,,,,,,
+3,0,0,0,UG,A,TestQuote1,PartDEFA,UNIVERSAL BEAM 127 X 76 X 13           .,0,0,0,,0,0,,,,,,0,0,,0,0,0,0,0,,0,,,,,,,,,,,,,,,,,,,,,,,
+[STK]
+6100,0,2,1,ABC,0,PartDEFA,UNIVERSAL BEAM 127 X 76 X 13           .,       X,1,0,,X,0,0,0,,,PartDEFA,,,,,,,
+12000,0,3,1,ABC,0,PartDEFA,UNIVERSAL BEAM 127 X 76 X 13           .,       X,1,0,,X,0,0,0,,,PartDEFA,,,,,,,
