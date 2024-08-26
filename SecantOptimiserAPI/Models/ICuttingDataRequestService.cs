@@ -1,8 +1,7 @@
 ﻿namespace SecantOptimiserAPI.Models
 {
-    public interface ISecantInput
+    public interface ICuttingDataRequestService
     {
         public string[] GetLines(RequestModel requestModel);
-        public string GetSectionName();
     }
 }

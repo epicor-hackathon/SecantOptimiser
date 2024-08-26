@@ -1,6 +1,8 @@
-﻿namespace SecantOptimiserAPI.Models
+﻿using SecantOptimiserAPI.Models;
+
+namespace SecantOptimiserAPI.Builders
 {
-    public class CuttingOverride : ISecantInput
+    public class CuttingOverrideRequestBuilder : ICuttingDataRequestService
     {
         public string[] GetLines(RequestModel requestModel)
         {

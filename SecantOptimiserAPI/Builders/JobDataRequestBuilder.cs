@@ -1,6 +1,8 @@
-﻿namespace SecantOptimiserAPI.Models
+﻿using SecantOptimiserAPI.Models;
+
+namespace SecantOptimiserAPI.Builders
 {
-    public class JobData : ISecantInput
+    public class JobDataRequestBuilder : ICuttingDataRequestService
     {
         public string[] GetLines(RequestModel requestModel)
         {

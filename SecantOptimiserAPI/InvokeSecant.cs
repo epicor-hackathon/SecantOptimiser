@@ -11,11 +11,9 @@ namespace SecantOptimiserAPI
             {
                 IntPtr hWnd = IntPtr.Zero; // Replace with actual window handle if needed
 
-
-                string pszSystem = "C:\\Work\\Dev\\SecantOptimiserAPI\\Secant\\";
+                string pszSystem = Directory.GetCurrentDirectory() + @"\Secant\";
                 Int64 jFlags = 011; // Replace with actual flags if needed
                 IntPtr lpfnCallBack = IntPtr.Zero; // Replace with actual callback if needed
-
                 bool result = NativeMethods.Optimise(hWnd, pszDir, pszJob, pszSystem, jFlags, lpfnCallBack);
                 return result;
             }

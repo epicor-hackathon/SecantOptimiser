@@ -1,6 +1,6 @@
 ﻿namespace SecantOptimiserAPI.Models
 {
-    public class CuttingOptions: ISecantInput
+    public class CuttingOptions
     {
         public int minimumOffcutLengthToStock { get; set; }
         public int sawTolerance { get; set; }
@@ -15,14 +15,6 @@
         public double mitreAngle1 { get; set; }
         public double mitreAngle2 { get; set; }
         public int mitreClampWidth { get; set; }
-        public string[] GetLines(RequestModel requestModel)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public string GetSectionName()
-        {
-            throw new System.NotImplementedException();
-        }
+      
     }
 }
