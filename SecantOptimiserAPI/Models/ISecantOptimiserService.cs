@@ -1,4 +1,7 @@
-﻿namespace SecantOptimiserAPI.Models
+﻿using SecantOptimiserAPI.Models.Request;
+using SecantOptimiserAPI.Models.Response;
+
+namespace SecantOptimiserAPI.Models
 {
     public interface ISecantOptimiserService
     {

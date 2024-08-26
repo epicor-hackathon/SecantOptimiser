@@ -1,9 +1,9 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace SecantOptimiserAPI.Models
+namespace SecantOptimiserAPI.Models.Request
 {
-    public class CuttingData 
+    public class CuttingData
     {
         public string identifier { get; set; }
         public int lengthInMm { get; set; }
@@ -35,6 +35,6 @@ namespace SecantOptimiserAPI.Models
         public double mitreWidth { get; set; }
         public string crossSection { get; set; }
         public int symmetrical { get; set; }
-       
+
     }
 }

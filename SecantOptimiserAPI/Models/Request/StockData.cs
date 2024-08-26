@@ -1,8 +1,8 @@
 ﻿using System.Text;
 
-namespace SecantOptimiserAPI.Models
+namespace SecantOptimiserAPI.Models.Request
 {
-    public class StockData 
+    public class StockData
     {
         public string identifier { get; set; }
         public int lengthInMm { get; set; }
@@ -25,6 +25,6 @@ namespace SecantOptimiserAPI.Models
         public int length2InMm { get; set; }
         public string material { get; set; }
         public string unitId { get; set; }
-       
+
     }
 }

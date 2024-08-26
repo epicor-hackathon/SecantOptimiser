@@ -1,4 +1,4 @@
-﻿namespace SecantOptimiserAPI.Models
+﻿namespace SecantOptimiserAPI.Models.Request
 {
     public class CuttingOptions
     {
@@ -15,6 +15,6 @@
         public double mitreAngle1 { get; set; }
         public double mitreAngle2 { get; set; }
         public int mitreClampWidth { get; set; }
-      
+
     }
 }

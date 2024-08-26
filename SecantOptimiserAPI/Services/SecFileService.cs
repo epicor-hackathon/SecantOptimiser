@@ -1,4 +1,7 @@
 ﻿using SecantOptimiserAPI.Models;
+using SecantOptimiserAPI.Models.Request;
+using SecantOptimiserAPI.Models.Response;
+using System.Collections.Generic;
 
 namespace SecantOptimiserAPI.Services;
 public class SecFileService : ISecFileService
@@ -7,70 +10,58 @@ public class SecFileService : ISecFileService
     readonly ICuttingDataRequestService _cuttingDataRequestService;
     readonly IStockDataRequestService _stockDataRequestService;
     readonly IJobDataRequestService _jobDataRequestService;
-    public SecFileService(ICuttingDataRequestService cuttingDataRequestService, IStockDataRequestService stockDataRequestService, ISecantSection secantSectionService, IJobDataRequestService jobDataRequestService)
+    readonly IOptimiserResponseService _optimiserResponseService;
+    public SecFileService(ICuttingDataRequestService cuttingDataRequestService, IStockDataRequestService stockDataRequestService, ISecantSection secantSectionService, IJobDataRequestService jobDataRequestService,
+        IOptimiserResponseService optimiserResponseService)
     {
         _secantSectionService = secantSectionService;
         _cuttingDataRequestService = cuttingDataRequestService;
         _stockDataRequestService = stockDataRequestService;
-        _jobDataRequestService = jobDataRequestService; 
+        _jobDataRequestService = jobDataRequestService;
+        _optimiserResponseService = optimiserResponseService;   
     }
-    public void ReadFromFile(string path)
+    public OptimiserResponse ReadFromFile(string path)
     {
-        var lines = File.ReadAllLines(path);
-        var sections = new List<SecantSectionService>();
-
-        // split lines into sections each starting with section header
-        var sectionLines = new List<string>();
-        foreach (var line in lines)
-        {
-            if (line.Trim().StartsWith("["))
-            {
-                if (sectionLines.Count > 0)
-                {
-                    sections.Add(_secantSectionService.ReadSection(sectionLines.ToArray()));
-                    sectionLines = new List<string>();
-                }
-            }
-            sectionLines.Add(line);
-        }
-        if (sectionLines.Count > 0)
-        {
-            sections.Add(_secantSectionService.ReadSection(sectionLines.ToArray()));
-        }
-        this.Sections = sections;
+        return _optimiserResponseService.GetOptimiserResponse(path);
     }
 
     public void ToSecFile(RequestModel inputModel,string path)
     {
-        AddLinesToSection(UtilityService.SEC_NAME_JOB, _jobDataRequestService.GetLines(inputModel));
-        AddLinesToSection(UtilityService.SEC_NAME_CUT, _cuttingDataRequestService.GetLines(inputModel));
-        AddLinesToSection(UtilityService.SEC_NAME_STK, _stockDataRequestService.GetLines(inputModel));
-        WriteToFile(path);
+        List<SecantSection> sections = new();
+        AddLinesToSection(UtilityService.SEC_NAME_JOB, _jobDataRequestService.GetLines(inputModel),ref sections);
+        AddLinesToSection(UtilityService.SEC_NAME_CUT, _cuttingDataRequestService.GetLines(inputModel),ref sections);
+        AddLinesToSection(UtilityService.SEC_NAME_STK, _stockDataRequestService.GetLines(inputModel),ref sections);
+        WriteToFile(path, sections);
     }
 
-    public void WriteToFile(string path)
+    void AddLinesToSection(string sectionName, string[] lines,ref List<SecantSection> sections)
     {
-        using var writer = new StreamWriter(path);
-        foreach (var section in Sections)
-        {
-            _secantSectionService.WriteSection(section,writer);
-        }
-    }
-
-    public void AddLinesToSection(string sectionName, string[] lines)
-    {
-        var section = Sections.FirstOrDefault(s => s.Name == sectionName);
+        var section = sections.FirstOrDefault(s => s.Name == sectionName);
         if (section == null)
         {
-            section = new SecantSectionService { Name = sectionName, Lines = new List<string>() };
-            Sections.Add(section);
+            section = new SecantSection { Name = sectionName, Lines = new List<string>() };
+            sections.Add(section);
         }
         section.Lines.AddRange(lines.ToArray());
     }
+    void WriteToFile(string path, List<SecantSection> sections)
+    {
+        using var writer = new StreamWriter(path);
+        foreach (var section in sections)
+        {
+            WriteSection(section, writer);
+        }
+    }
 
+    void WriteSection(SecantSection section, StreamWriter writer)
+    {
+        writer.WriteLine($"[{section.Name}]");
+        foreach (var line in section.Lines)
+        {
+            writer.WriteLine(line);
+        }
+    }
 
-
-    public List<SecantSectionService> Sections { get; set; } = new();
 
 }
 

@@ -1,4 +1,6 @@
 ﻿using SecantOptimiserAPI.Models;
+using SecantOptimiserAPI.Models.Request;
+using SecantOptimiserAPI.Models.Response;
 using SecantOptimiserAPI.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -14,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IStockDataRequestService, StockDataRequestService>();
             services.AddScoped<ISecantOptimiserService, SecantOptimiserService>();
             services.AddScoped<IJobDataRequestService, JobDataRequestService>();
-      
+            services.AddScoped<IOptimiserResponseService, OptimiserResponseService>();
             return services;
         }
     }

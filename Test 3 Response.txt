@@ -1,0 +1,125 @@
+{
+  "cutPieceData": [
+    {
+      "identifier": "TestQuote3",
+      "description": "UNIVERSAL BEAM 127 X 76 X 13           .",
+      "quantityRequired": 2,
+      "quantityMade": 2,
+      "quantityVariance": 0,
+      "cutRequestRecordNumber": 0
+    },
+    {
+      "identifier": "TestQuote3",
+      "description": "UNIVERSAL BEAM 127 X 76 X 13           .",
+      "quantityRequired": 4,
+      "quantityMade": 4,
+      "quantityVariance": 0,
+      "cutRequestRecordNumber": 0
+    }
+  ],1
+  "cuttingPatternData": [
+    {
+      "cutRequestRecordNumber": 2,
+      "patternNumber": 1,
+      "patternNumberRecordNumber": 1,
+      "identifier": "TestQuote3",
+      "material": "PartDEFA",
+      "stockLength": 12000,
+      "stockUnit": "PartDEFA6011004",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 3800,
+      "stockWidth": 1
+    },
+    {
+      "cutRequestRecordNumber": 2,
+      "patternNumber": 1,
+      "patternNumberRecordNumber": 2,
+      "identifier": "TestQuote3",
+      "material": "PartDEFA",
+      "stockLength": 12000,
+      "stockUnit": "PartDEFA6011004",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 3800,
+      "stockWidth": 1
+    },
+    {
+      "cutRequestRecordNumber": 2,
+      "patternNumber": 1,
+      "patternNumberRecordNumber": 3,
+      "identifier": "TestQuote3",
+      "material": "PartDEFA",
+      "stockLength": 12000,
+      "stockUnit": "PartDEFA6011004",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 3800,
+      "stockWidth": 1
+    },
+    {
+      "cutRequestRecordNumber": 2,
+      "patternNumber": 2,
+      "patternNumberRecordNumber": 1,
+      "identifier": "TestQuote3",
+      "material": "PartDEFA",
+      "stockLength": 12000,
+      "stockUnit": "PartDEFA6011004",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 3800,
+      "stockWidth": 1
+    },
+    {
+      "cutRequestRecordNumber": 1,
+      "patternNumber": 2,
+      "patternNumberRecordNumber": 2,
+      "identifier": "TestQuote3",
+      "material": "PartDEFA",
+      "stockLength": 12000,
+      "stockUnit": "PartDEFA6011004",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 3500,
+      "stockWidth": 1
+    },
+    {
+      "cutRequestRecordNumber": 1,
+      "patternNumber": 2,
+      "patternNumberRecordNumber": 3,
+      "identifier": "TestQuote3",
+      "material": "PartDEFA",
+      "stockLength": 12000,
+      "stockUnit": "PartDEFA6011004",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 3500,
+      "stockWidth": 1
+    }
+  ],
+  "stockUsageData": [
+    {
+      "identifier": "PartDEFA",
+      "material": "PartDEFA",
+      "lengthInMm": 12000,
+      "widthInMm": 1,
+      "quantityAvailable": -2,
+      "value": 1,
+      "class": "ABC",
+      "thickness": 1,
+      "costPerKg": 0,
+      "weight": 0,
+      "price": 0,
+      "quantityAllocated": 0,
+      "batch": "X",
+      "pattern": 2,
+      "opened": 0,
+      "jobAllocated": "",
+      "description": "UNIVERSAL BEAM 127 X 76 X 13           .",
+      "length1InMm": 9100,
+      "sepFlag": " ",
+      "length2InMm": 0,
+      "unitId": "PartDEFA6011004"
+    }
+  ]
+}

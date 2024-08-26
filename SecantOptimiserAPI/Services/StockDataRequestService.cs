@@ -1,5 +1,5 @@
 ﻿using SecantOptimiserAPI.Builders;
-using SecantOptimiserAPI.Models;
+using SecantOptimiserAPI.Models.Request;
 
 namespace SecantOptimiserAPI.Services
 {

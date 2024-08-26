@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SecantOptimiserAPI.Models;
+using SecantOptimiserAPI.Models.Request;
 
 namespace SecantOptimiserAPI.Controllers
 {

@@ -1,4 +1,4 @@
-﻿namespace SecantOptimiserAPI.Models
+﻿namespace SecantOptimiserAPI.Models.Request
 {
     public class OptionalCuttingOptions
     {

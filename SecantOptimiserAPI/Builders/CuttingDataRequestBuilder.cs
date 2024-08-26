@@ -1,4 +1,4 @@
-﻿using SecantOptimiserAPI.Models;
+﻿using SecantOptimiserAPI.Models.Request;
 using System.Text;
 
 namespace SecantOptimiserAPI.Builders

@@ -1,23 +1,25 @@
 ﻿using SecantOptimiserAPI.Services;
 
-namespace SecantOptimiserAPI.Models
+namespace SecantOptimiserAPI.Models.Response
 {
     public class OptimiserResponse
     {
-        public List<CutPieceData> cutPieceData { get; set; }
-        public List<CuttingPatternData> cuttingPatternData { get; set; }
-        public List<StockUsageData> stockUsageData { get; set; }
+        public List<CutPieceData> cutPieceData { get; private set; }
+        public List<CuttingPatternData> cuttingPatternData { get; private set; }
+        public List<StockUsageData> stockUsageData { get; private set; }
 
         public OptimiserResponse()
         {
-            // for json deserialisation
+            cutPieceData = new List<CutPieceData>();
+            cuttingPatternData = new List<CuttingPatternData>();
+            stockUsageData = new List<StockUsageData>();
         }
 
-        public OptimiserResponse(ISecFileService secFile)
-        {
-            // todo: implement output parsing from sec file sections SUM PAT OVM USD
+        //public OptimiserResponse(ISecFileService secFile)
+        //{
+        //    // todo: implement output parsing from sec file sections SUM PAT OVM USD
 
-        }
+        //}
 
         // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
         public class CutPieceData
