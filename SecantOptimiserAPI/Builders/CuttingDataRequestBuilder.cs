@@ -13,8 +13,8 @@ namespace SecantOptimiserAPI.Builders
                 StringBuilder @string = new StringBuilder();
                 @string.Append($"{item.quantityRequired},");
                 @string.Append($"{item.overMake},");
-                @string.Append($"{item.topLength + item.bottomLength},"); // Length
-                @string.Append($"{item.mitreWidth},"); // width
+                @string.Append($"{item.lengthInMm},"); 
+                @string.Append(","); // width
                 @string.Append($"{item.grain},");
                 @string.Append($"{item.@class},");
                 @string.Append($"{item.identifier},");
@@ -25,9 +25,9 @@ namespace SecantOptimiserAPI.Builders
                 @string.Append($"{item.split},");
                 @string.Append($"{item.type},");
                 @string.Append($"{item.tie},");
-                @string.Append($"{item.quantityFree},");
-                @string.Append($",");
-                @string.Append(",");
+                @string.Append(",");//Goods Free
+                @string.Append($","); //Orig Demand
+                @string.Append(","); //Orig Overmake
                 @string.Append($"{item.edge},");
                 @string.Append($"{item.segment},");
                 @string.Append($"{item.batch},");
@@ -39,7 +39,7 @@ namespace SecantOptimiserAPI.Builders
                 @string.Append($"{item.rearAngle},");
                 @string.Append($"{item.frontAngle},");
                 @string.Append($"{item.mitreWidth},");
-                @string.Append(",");
+                @string.Append(","); //Face
                 @string.Append($"{item.symmetrical}");
                 @string.Append(",");
                 @string.Append(",");

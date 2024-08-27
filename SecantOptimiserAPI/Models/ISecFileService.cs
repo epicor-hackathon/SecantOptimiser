@@ -8,5 +8,7 @@ namespace SecantOptimiserAPI.Models
     {
         void ToSecFile(RequestModel inputModel, string path);
         OptimiserResponse ReadFromFile(string path);
+
+        SecantSection ReadSection(string[] lines);
     }
 }

@@ -2,27 +2,24 @@
 using SecantOptimiserAPI.Models.Request;
 using SecantOptimiserAPI.Models.Response;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace SecantOptimiserAPI.Services;
 public class SecFileService : ISecFileService
 {
-    readonly ISecantSection _secantSectionService;
     readonly ICuttingDataRequestService _cuttingDataRequestService;
     readonly IStockDataRequestService _stockDataRequestService;
     readonly IJobDataRequestService _jobDataRequestService;
-    readonly IOptimiserResponseService _optimiserResponseService;
-    public SecFileService(ICuttingDataRequestService cuttingDataRequestService, IStockDataRequestService stockDataRequestService, ISecantSection secantSectionService, IJobDataRequestService jobDataRequestService,
-        IOptimiserResponseService optimiserResponseService)
+
+    public SecFileService(ICuttingDataRequestService cuttingDataRequestService, IStockDataRequestService stockDataRequestService, IJobDataRequestService jobDataRequestService)
     {
-        _secantSectionService = secantSectionService;
         _cuttingDataRequestService = cuttingDataRequestService;
         _stockDataRequestService = stockDataRequestService;
         _jobDataRequestService = jobDataRequestService;
-        _optimiserResponseService = optimiserResponseService;   
     }
     public OptimiserResponse ReadFromFile(string path)
     {
-        return _optimiserResponseService.GetOptimiserResponse(path);
+        return GetOptimiserResponse(path);
     }
 
     public void ToSecFile(RequestModel inputModel,string path)
@@ -32,6 +29,68 @@ public class SecFileService : ISecFileService
         AddLinesToSection(UtilityService.SEC_NAME_CUT, _cuttingDataRequestService.GetLines(inputModel),ref sections);
         AddLinesToSection(UtilityService.SEC_NAME_STK, _stockDataRequestService.GetLines(inputModel),ref sections);
         WriteToFile(path, sections);
+    }
+
+    public SecantSection ReadSection(string[] lines)
+    {
+        if (!lines.Any())
+        {
+            throw new Exception("No lines to read");
+        }
+        SecantSection section = new();
+        var header = lines[0];
+        var headerMatch = Regex.Match(header, @"\s*\[(.*)\]\s*", RegexOptions.IgnoreCase);
+
+        if (!headerMatch.Success || headerMatch.Groups.Count < 2)
+        {
+            throw new Exception("Invalid section header");
+        }
+        section.Name = headerMatch.Groups[^1].Value;
+        section.Lines = new List<string>(lines.Skip(1));
+
+        return section;
+    }
+
+    private OptimiserResponse GetOptimiserResponse(string path)
+    {
+        OptimiserResponse optimiserResponse = new OptimiserResponse();
+        var lines = File.ReadAllLines(path);
+        var sections = new List<SecantSection>();
+
+        // split lines into sections each starting with section header
+        var sectionLines = new List<string>();
+        foreach (var line in lines)
+        {
+            if (line.Trim().StartsWith("["))
+            {
+                if (sectionLines.Count > 0)
+                {
+                    sections.Add(ReadSection(sectionLines.ToArray()));
+                    sectionLines = new List<string>();
+                }
+            }
+            sectionLines.Add(line);
+        }
+        if (sectionLines.Count > 0)
+        {
+            sections.Add(ReadSection(sectionLines.ToArray()));
+        }
+        foreach (var item in sections)
+        {
+            //switch (item.Name)
+            //{
+            //    case UtilityService.SEC_NAME_JOB:
+            //         _jobDataService.GetOptimiserResponse(item);
+            //        break;
+            //    case UtilityService.SEC_NAME_CUT:
+            //        _cuttingDataService.GetOptimiserResponse(optimiserResponse, item);
+            //        break;
+            //    case UtilityService.SEC_NAME_STK:
+            //        _stockDataService.GetOptimiserResponse(item);
+            //        break;
+            //}
+        }
+        return optimiserResponse;
     }
 
     void AddLinesToSection(string sectionName, string[] lines,ref List<SecantSection> sections)
