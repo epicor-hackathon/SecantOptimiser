@@ -12,10 +12,11 @@ namespace Microsoft.Extensions.DependencyInjection
             //services.AddScoped<ISecantSection, SecantSectionService>();
             services.AddScoped<ISecFileService, SecFileService>();
             //services.AddScoped<IOptimiserRequestService, OptimiserRequestService>();
-            services.AddScoped<ICuttingDataRequestService, CuttingDataRequestService>();
-            services.AddScoped<IStockDataRequestService, StockDataRequestService>();
+            services.AddScoped<ICuttingDataService, CuttingDataRequestService>();
+            services.AddScoped<IStockDataService, StockDataRequestService>();
             services.AddScoped<ISecantOptimiserService, SecantOptimiserService>();
             services.AddScoped<IJobDataRequestService, JobDataRequestService>();
+            services.AddScoped<IPatternService,PatternService>();
             //services.AddScoped<IOptimiserResponseService, OptimiserResponseService>();
             return services;
         }

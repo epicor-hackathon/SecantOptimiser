@@ -15,6 +15,7 @@ namespace SecantOptimiserAPI.Builders
                 ,"Rangename=SecFile"
                 ,"{defaults}"
                 ,"name=Template"
+                ,$"description={requestModel.jobNumber}"
                ];
             return lines.ToArray();
         }

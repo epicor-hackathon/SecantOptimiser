@@ -7,7 +7,7 @@ namespace SecantOptimiserAPI.Models
     public interface ISecFileService
     {
         void ToSecFile(RequestModel inputModel, string path);
-        OptimiserResponse ReadFromFile(string path);
+        OptimiserResponse ReadFromFile(RequestModel inputModel, string path);
 
         SecantSection ReadSection(string[] lines);
     }

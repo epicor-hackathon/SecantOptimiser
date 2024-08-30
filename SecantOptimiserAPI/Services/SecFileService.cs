@@ -7,19 +7,20 @@ using System.Text.RegularExpressions;
 namespace SecantOptimiserAPI.Services;
 public class SecFileService : ISecFileService
 {
-    readonly ICuttingDataRequestService _cuttingDataRequestService;
-    readonly IStockDataRequestService _stockDataRequestService;
+    readonly ICuttingDataService _cuttingDataRequestService;
+    readonly IStockDataService _stockDataRequestService;
     readonly IJobDataRequestService _jobDataRequestService;
-
-    public SecFileService(ICuttingDataRequestService cuttingDataRequestService, IStockDataRequestService stockDataRequestService, IJobDataRequestService jobDataRequestService)
+    readonly IPatternService _patternService;
+    public SecFileService(ICuttingDataService cuttingDataRequestService, IStockDataService stockDataRequestService, IJobDataRequestService jobDataRequestService, IPatternService patternService)
     {
         _cuttingDataRequestService = cuttingDataRequestService;
         _stockDataRequestService = stockDataRequestService;
         _jobDataRequestService = jobDataRequestService;
+        _patternService = patternService;   
     }
-    public OptimiserResponse ReadFromFile(string path)
+    public OptimiserResponse ReadFromFile(RequestModel inputModel, string path)
     {
-        return GetOptimiserResponse(path);
+        return GetOptimiserResponse(inputModel, path);
     }
 
     public void ToSecFile(RequestModel inputModel,string path)
@@ -51,9 +52,9 @@ public class SecFileService : ISecFileService
         return section;
     }
 
-    private OptimiserResponse GetOptimiserResponse(string path)
+    private OptimiserResponse GetOptimiserResponse(RequestModel inputModel, string path)
     {
-        OptimiserResponse optimiserResponse = new OptimiserResponse();
+        OptimiserResponse? optimiserResponse = null;
         var lines = File.ReadAllLines(path);
         var sections = new List<SecantSection>();
 
@@ -75,21 +76,14 @@ public class SecFileService : ISecFileService
         {
             sections.Add(ReadSection(sectionLines.ToArray()));
         }
-        foreach (var item in sections)
-        {
-            //switch (item.Name)
-            //{
-            //    case UtilityService.SEC_NAME_JOB:
-            //         _jobDataService.GetOptimiserResponse(item);
-            //        break;
-            //    case UtilityService.SEC_NAME_CUT:
-            //        _cuttingDataService.GetOptimiserResponse(optimiserResponse, item);
-            //        break;
-            //    case UtilityService.SEC_NAME_STK:
-            //        _stockDataService.GetOptimiserResponse(item);
-            //        break;
-            //}
-        }
+        SecantSection? cutSection = sections.FirstOrDefault(s => s.Name.Equals(UtilityService.SEC_NAME_OVM));
+        optimiserResponse = _cuttingDataRequestService.BuildCuttingData(inputModel, cutSection);
+
+        SecantSection? stkSection = sections.FirstOrDefault(s => s.Name.Equals(UtilityService.SEC_NAME_USD));
+        _stockDataRequestService.BuildStockData(inputModel, stkSection, ref optimiserResponse);
+
+        SecantSection? patSection = sections.FirstOrDefault(s => s.Name.Equals(UtilityService.SEC_NAME_PAT));
+        _patternService.BuildPatternData(inputModel, patSection, ref optimiserResponse);
         return optimiserResponse;
     }
 

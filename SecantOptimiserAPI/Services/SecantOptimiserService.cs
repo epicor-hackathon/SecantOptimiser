@@ -26,7 +26,7 @@ namespace SecantOptimiserAPI.Services
             var success = InvokeSecant.Call(tempDir, Path.GetFileNameWithoutExtension(tempFile));
             if (success)
             {
-                OptimiserResponse optimiserResponse = _secFileService.ReadFromFile(tempFile);
+                OptimiserResponse optimiserResponse = _secFileService.ReadFromFile(inputModel,tempFile);
                 // To Do. Remove the below commented code to delete the files
                 //if (File.Exists(tempFile))
                 //{

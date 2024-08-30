@@ -1,9 +1,12 @@
 ﻿using SecantOptimiserAPI.Models.Request;
+using SecantOptimiserAPI.Models.Response;
+using SecantOptimiserAPI.Services;
 using System.Text;
+using static SecantOptimiserAPI.Models.Response.OptimiserResponse;
 
 namespace SecantOptimiserAPI.Builders
 {
-    class CuttingDataRequestBuilder
+    class CuttingDatatBuilder
     {
         public static string[] GetLines(RequestModel requestModel)
         {
@@ -13,7 +16,7 @@ namespace SecantOptimiserAPI.Builders
                 StringBuilder @string = new StringBuilder();
                 @string.Append($"{item.quantityRequired},");
                 @string.Append($"{item.overMake},");
-                @string.Append($"{item.lengthInMm},"); 
+                @string.Append($"{item.lengthInMm},");
                 @string.Append(","); // width
                 @string.Append($"{item.grain},");
                 @string.Append($"{item.@class},");
@@ -70,6 +73,25 @@ namespace SecantOptimiserAPI.Builders
 
             return lines.ToArray();
 
+        }
+
+        public static OptimiserResponse BuildCuttingData(RequestModel requestModel, SecantSection secant)
+        {
+            OptimiserResponse optimiserResponse = new OptimiserResponse();
+            foreach (var item in secant.Lines)
+            {
+                string[] values = item.Split(',');
+                optimiserResponse.cutPieceData.Add(new CutPieceData()
+                {
+                    identifier = values[0],
+                    description = values[1],
+                    quantityMade = UtilityService.ConvertToInt(values[2]),
+                    quantityRequired = UtilityService.ConvertToInt(values[3]),
+                    quantityVariance = 0,
+                    cutRequestRecordNumber = 0
+                });
+            }
+            return optimiserResponse;
         }
     }
 }
