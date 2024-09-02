@@ -29,7 +29,7 @@ namespace SecantOptimiserAPI.Builders
                 @string.Append($"{item.price},");
                 @string.Append($"{item.weight},");
                 @string.Append($"{item.costPerKg},");
-                @string.Append($","); //N Length
+                @string.Append($"{item.length1InMm} ,"); //N Length
                 @string.Append($","); //N Width
                 @string.Append($"{item.material},");
                 @string.Append($","); //Procurement cost

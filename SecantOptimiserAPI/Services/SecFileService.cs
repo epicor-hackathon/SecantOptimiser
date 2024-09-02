@@ -10,13 +10,19 @@ public class SecFileService : ISecFileService
     readonly ICuttingDataService _cuttingDataRequestService;
     readonly IStockDataService _stockDataRequestService;
     readonly IJobDataRequestService _jobDataRequestService;
+    readonly IControlService _controlService;
     readonly IPatternService _patternService;
-    public SecFileService(ICuttingDataService cuttingDataRequestService, IStockDataService stockDataRequestService, IJobDataRequestService jobDataRequestService, IPatternService patternService)
+    public SecFileService(ICuttingDataService cuttingDataRequestService,
+                          IStockDataService stockDataRequestService,
+                          IJobDataRequestService jobDataRequestService,
+                          IPatternService patternService,
+                          IControlService controlService)
     {
         _cuttingDataRequestService = cuttingDataRequestService;
         _stockDataRequestService = stockDataRequestService;
         _jobDataRequestService = jobDataRequestService;
-        _patternService = patternService;   
+        _patternService = patternService;
+        _controlService = controlService;
     }
     public OptimiserResponse ReadFromFile(RequestModel inputModel, string path)
     {
@@ -29,6 +35,7 @@ public class SecFileService : ISecFileService
         AddLinesToSection(UtilityService.SEC_NAME_JOB, _jobDataRequestService.GetLines(inputModel),ref sections);
         AddLinesToSection(UtilityService.SEC_NAME_CUT, _cuttingDataRequestService.GetLines(inputModel),ref sections);
         AddLinesToSection(UtilityService.SEC_NAME_STK, _stockDataRequestService.GetLines(inputModel),ref sections);
+        AddLinesToSection(UtilityService.SEC_NAME_CTL, _controlService.GetLines(inputModel),ref sections);
         WriteToFile(path, sections);
     }
 

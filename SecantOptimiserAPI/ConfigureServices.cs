@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<ISecantOptimiserService, SecantOptimiserService>();
             services.AddScoped<IJobDataRequestService, JobDataRequestService>();
             services.AddScoped<IPatternService,PatternService>();
-            //services.AddScoped<IOptimiserResponseService, OptimiserResponseService>();
+            services.AddScoped<IControlService, ControlService>();
             return services;
         }
     }
