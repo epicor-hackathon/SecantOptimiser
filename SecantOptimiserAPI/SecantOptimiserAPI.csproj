@@ -21,7 +21,12 @@
     <EmbeddedResource Remove="EpicorSecant\**" />
     <None Remove="EpicorSecant\**" />
   </ItemGroup>
-
+  <ItemGroup>
+    <!-- Include the entire folder structure -->
+    <None Update="Secant\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
