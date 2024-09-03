@@ -12,7 +12,15 @@
 	<Title>Secant Optimiser API</Title>
 	<Company>Epicor Software</Company>
 	<Authors>Epicor Labs</Authors>
+	<PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="EpicorSecant\**" />
+    <Content Remove="EpicorSecant\**" />
+    <EmbeddedResource Remove="EpicorSecant\**" />
+    <None Remove="EpicorSecant\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.7" />

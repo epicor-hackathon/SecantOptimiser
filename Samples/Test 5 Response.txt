@@ -1,0 +1,96 @@
+{
+  "cutPieceData": [
+    {
+      "identifier": "TestQuote5",
+      "description": "UNIVERSAL BEAM 127 X 76 X 13           .",
+      "quantityRequired": 1,
+      "quantityMade": 1,
+      "quantityVariance": 0,
+      "cutRequestRecordNumber": 0
+    },
+    {
+      "identifier": "TestQuote5",
+      "description": "UNIVERSAL BEAM 127 X 76 X 13           .",
+      "quantityRequired": 1,
+      "quantityMade": 1,
+      "quantityVariance": 0,
+      "cutRequestRecordNumber": 0
+    }
+  ],
+  "cuttingPatternData": [
+    {
+      "cutRequestRecordNumber": 2,
+      "patternNumber": 1,
+      "patternNumberRecordNumber": 1,
+      "identifier": "TestQuote5",
+      "material": "PartDEFA",
+      "stockLength": 4500,
+      "stockUnit": "PartDEFA6011006",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 2800,
+      "stockWidth": 1
+    },
+    {
+      "cutRequestRecordNumber": 1,
+      "patternNumber": 2,
+      "patternNumberRecordNumber": 1,
+      "identifier": "TestQuote5",
+      "material": "PartDEFA",
+      "stockLength": 4600,
+      "stockUnit": "PartDEFA6011007",
+      "numberOff": 1,
+      "panelsProduced": 1,
+      "panelLength": 3000,
+      "stockWidth": 1
+    }
+  ],
+  "stockUsageData": [
+    {
+      "identifier": "PartDEFA",
+      "material": "PartDEFA",
+      "lengthInMm": 4500,
+      "widthInMm": 1,
+      "quantityAvailable": -1,
+      "value": 0.2,
+      "class": "ABC",
+      "thickness": 1,
+      "costPerKg": 0,
+      "weight": 0,
+      "price": 0,
+      "quantityAllocated": 0,
+      "batch": "X",
+      "pattern": 2,
+      "opened": 0,
+      "jobAllocated": "",
+      "description": "UNIVERSAL BEAM 127 X 76 X 13           .",
+      "length1InMm": 9100,
+      "sepFlag": " ",
+      "length2InMm": 0,
+      "unitId": "PartDEFA6011006"
+    },
+    {
+      "identifier": "PartDEFA",
+      "material": "PartDEFA",
+      "lengthInMm": 4600,
+      "widthInMm": 1,
+      "quantityAvailable": -1,
+      "value": 0.2,
+      "class": "ABC",
+      "thickness": 1,
+      "costPerKg": 0,
+      "weight": 0,
+      "price": 0,
+      "quantityAllocated": 0,
+      "batch": "X",
+      "pattern": 2,
+      "opened": 0,
+      "jobAllocated": "",
+      "description": "UNIVERSAL BEAM 127 X 76 X 13           .",
+      "length1InMm": 9100,
+      "sepFlag": " ",
+      "length2InMm": 0,
+      "unitId": "PartDEFA6011007"
+    }
+  ]
+}

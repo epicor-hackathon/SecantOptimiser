@@ -76,7 +76,7 @@ namespace SecantOptimiserAPI.Builders
                     stockData.weight = UtilityService.ConvertToInt(values[14]);
                     stockData.costPerKg = UtilityService.ConvertToInt(values[15]);
                     stockData.material = values[18];
-                    //stockData.length1InMm = sd.length1InMm; // Need to discuss
+                    stockData.length1InMm = sd.length1InMm; // Need to discuss
                     stockData.sepFlag = sd.sepFlag; // Need to discuss
                     stockData.length2InMm = sd.length2InMm; // Need to discuss
                     stockData.unitId = sd.unitId;
