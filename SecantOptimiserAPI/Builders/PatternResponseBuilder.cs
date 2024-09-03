@@ -11,30 +11,39 @@ namespace SecantOptimiserAPI.Builders
             List<List<string>> patterns = GetPatterns(secant.Lines.ToArray(), "P");
             foreach (var item in patterns)
             {
+                string[] PRec = item.FirstOrDefault().Split(',');
+                string[] SRec = item[2].Split(',');
                 List<List<string>> pRecords = GetPatterns(item.ToArray(), "p");
-                int patternNumberRecordNumber = 1;// Need to discuss
+                int patternNumberRecordNumber = 1;
                 foreach (var pPatterns in pRecords)
                 {
                     string patternRecord = pPatterns[0];
-                    string[] values = patternRecord.Split(',');
-                    string[] PRec = item.FirstOrDefault().Split(',');
-                    string[] SRec = item[2].Split(',');
+                    string[] pValues = patternRecord.Split(',');
+                    
                     OptimiserResponse.CuttingPatternData cuttingPatternData = new OptimiserResponse.CuttingPatternData();
                     cuttingPatternData.patternNumber = UtilityService.ConvertToInt(PRec[1]);
-                    cuttingPatternData.cutRequestRecordNumber = UtilityService.ConvertToInt(values[1]);
+                    cuttingPatternData.cutRequestRecordNumber = UtilityService.ConvertToInt(pValues[1]);
                     cuttingPatternData.patternNumberRecordNumber = patternNumberRecordNumber;
-                    cuttingPatternData.identifier = values[6];
+                    cuttingPatternData.identifier = pValues[6];
                     cuttingPatternData.material = PRec[4];
                     cuttingPatternData.stockLength = UtilityService.ConvertToInt(SRec[3]);
-                    cuttingPatternData.stockWidth = UtilityService.ConvertToInt(SRec[4]);// Need to discuss
+                    cuttingPatternData.stockWidth = UtilityService.ConvertToInt(SRec[4]);
 
-                    cuttingPatternData.stockUnit = ""; // Need to discuss
-                    cuttingPatternData.numberOff = 0;
-                    cuttingPatternData.panelsProduced = 0;
-                    cuttingPatternData.panelLength = 0; // Need to discuss
-                    
+                    cuttingPatternData.panelsProduced = 1; // Need to discuss
+                    cuttingPatternData.numberOff = 1; // Need to discuss
 
-
+                    var cutData = requestModel.cuttingData.FirstOrDefault(s => s.identifier.Equals(cuttingPatternData.identifier, StringComparison.Ordinal) &&
+                        s.material.Equals(cuttingPatternData.material, StringComparison.Ordinal));
+                    if (cutData != null)
+                    {
+                        cuttingPatternData.panelLength = cutData.lengthInMm;
+                        var stockData = requestModel.StockData.FirstOrDefault(s => s.material.Equals(cuttingPatternData.material, StringComparison.Ordinal) && s.lengthInMm.Equals(cuttingPatternData.stockLength));
+                        if (stockData != null)
+                        {
+                            cuttingPatternData.stockUnit = stockData.unitId;
+                        }
+                        
+                    }
                     optimiserResponse.cuttingPatternData.Add(cuttingPatternData);
                     patternNumberRecordNumber++;
                 }

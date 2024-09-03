@@ -67,7 +67,7 @@ namespace SecantOptimiserAPI.Builders
                     stockData.thickness = UtilityService.ConvertToInt(values[5]);
                     stockData.identifier = identifier;// values[6];
                     stockData.description = values[7];
-                    stockData.batch = "X";// As per Secant doc this field is Not in use 
+                    //stockData.batch = "X";// As per Secant doc this field is Not in use 
                     stockData.opened = UtilityService.ConvertToInt(values[9]);
                     stockData.pattern = UtilityService.ConvertToInt(values[10]);// Pattern : Need to discuss
                     stockData.quantityAllocated = UtilityService.ConvertToInt(values[11]);
@@ -76,7 +76,7 @@ namespace SecantOptimiserAPI.Builders
                     stockData.weight = UtilityService.ConvertToInt(values[14]);
                     stockData.costPerKg = UtilityService.ConvertToInt(values[15]);
                     stockData.material = values[18];
-                    stockData.length1InMm = sd.length1InMm; // Need to discuss
+                    //stockData.length1InMm = sd.length1InMm; // Need to discuss
                     stockData.sepFlag = sd.sepFlag; // Need to discuss
                     stockData.length2InMm = sd.length2InMm; // Need to discuss
                     stockData.unitId = sd.unitId;
